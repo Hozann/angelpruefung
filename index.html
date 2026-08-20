@@ -4,693 +4,142 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Angelprüfung">
 <meta name="theme-color" content="#0f6f73">
 <title>Angelprüfung</title>
 <style>
-:root {
-  --bg:#f2f6f6; --card:#ffffff; --line:#dbe5e6; --text:#172226; --muted:#66757a;
-  --brand:#0f6f73; --brand2:#094548; --ok:#17763a; --okbg:#edf8f0; --bad:#b42318; --badbg:#fff2f0;
-}
-* { box-sizing:border-box; }
-html,body { margin:0; padding:0; background:var(--bg); color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
-body { padding-bottom:90px; }
-.wrap { max-width:820px; margin:0 auto; padding:16px; }
-.hero {
-  background:linear-gradient(180deg,var(--brand),#128187);
-  color:#fff; border-radius:24px; padding:22px 18px; box-shadow:0 10px 28px rgba(11,67,71,.18);
-}
-.hero h1 { margin:0; font-size:28px; }
-.hero p { margin:8px 0 0; opacity:.95; line-height:1.45; }
-.row { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-.badge {
-  background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.18);
-  padding:8px 12px; border-radius:999px; font-size:14px; font-weight:700;
-}
-.tabs { display:flex; gap:10px; margin:16px 0; }
-.tab {
-  flex:1; border:0; border-radius:14px; padding:13px 14px; font-weight:800; background:#e7eff0; color:var(--text);
-}
-.tab.active { background:var(--brand); color:#fff; }
-.panel { display:none; }
-.panel.active { display:block; }
-.card {
-  background:var(--card); border:1px solid var(--line); border-radius:20px; padding:18px; margin:12px 0;
-  box-shadow:0 5px 18px rgba(0,0,0,.04);
-}
-.quickgrid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-.tile {
-  background:#f8fbfb; border:1px solid var(--line); border-radius:18px; padding:16px;
-}
-.tile h2, .tile h3 { margin:0 0 8px; }
-.tile p { margin:0; color:var(--muted); line-height:1.45; }
-.actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
-.btn {
-  border:0; border-radius:14px; padding:13px 15px; font-weight:800; cursor:pointer; text-decoration:none; display:inline-block;
-}
-.btn.primary { background:var(--brand); color:#fff; }
-.btn.secondary { background:#e7eff0; color:var(--text); }
-.topbar {
-  position:sticky; top:0; z-index:5; padding:10px 16px; background:rgba(242,246,246,.93); backdrop-filter:blur(10px);
-  border-bottom:1px solid #e3ebec; margin:0 -16px 12px;
-}
-.topbar .inner { max-width:820px; margin:0 auto; display:flex; gap:10px; align-items:center; justify-content:space-between; }
-.small { font-size:13px; color:var(--muted); }
-.num { font-size:12px; font-weight:900; letter-spacing:.05em; text-transform:uppercase; color:var(--brand); }
-.question h3 { margin:6px 0 14px; line-height:1.35; font-size:20px; }
-.opts { display:grid; gap:10px; }
-.opt {
-  display:block; border:1px solid var(--line); border-radius:14px; padding:12px 13px; background:#fafcfc; cursor:pointer;
-}
-.opt input { margin-right:8px; }
-.opt.good { border-color:#b9ddc3; background:var(--okbg); }
-.opt.bad { border-color:#efc0bb; background:var(--badbg); }
-.feedback { min-height:24px; margin-top:12px; font-weight:800; }
-.feedback.ok { color:var(--ok); }
-.feedback.bad { color:var(--bad); }
-details.manual { margin-top:10px; }
-summary { cursor:pointer; color:var(--brand); font-weight:800; }
-.solution { background:#eef8f1; color:var(--ok); border:1px solid #b9ddc3; padding:12px; border-radius:12px; margin-top:10px; font-weight:800; }
-.listjump { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; }
-.listjump a {
-  text-align:center; text-decoration:none; background:#f7fbfb; color:var(--text);
-  border:1px solid var(--line); border-radius:12px; padding:10px 0; font-weight:700;
-}
-#quizArea .question { margin-top:0; }
-.scorebig { font-size:42px; font-weight:900; color:var(--brand); margin:6px 0; }
-footer { text-align:center; color:var(--muted); font-size:12px; padding:18px 0 6px; }
-@media (max-width:640px) {
-  .quickgrid { grid-template-columns:1fr; }
-  .listjump { grid-template-columns:repeat(4,minmax(0,1fr)); }
-  .question h3 { font-size:18px; }
-}
+:root{--bg:#f3f6f7;--card:#fff;--text:#172126;--muted:#68777c;--brand:#0f6f73;--line:#dce6e8;--ok:#147a39;--bad:#b42318;--sel:#e8f3f4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text)}
+.wrap{max-width:760px;margin:auto;padding:16px 16px 50px}.hero{background:linear-gradient(160deg,#0f6f73,#16858b);color:white;padding:22px;border-radius:23px;box-shadow:0 10px 30px rgba(14,80,84,.18)}
+.hero h1{margin:0;font-size:27px}.hero p{margin:8px 0 0;opacity:.92}.section-title{font-size:15px;color:var(--muted);font-weight:800;margin:22px 4px 9px;text-transform:uppercase;letter-spacing:.04em}
+.topic{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.04)}.topic-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.topic h2{margin:0;font-size:21px}.count{white-space:nowrap;background:#e7f1f2;color:#0a5559;border-radius:999px;padding:7px 10px;font-size:13px;font-weight:800}.topic p{color:var(--muted);line-height:1.45}
+.buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}button{font:inherit}.btn{border:0;border-radius:13px;padding:12px 14px;font-weight:800;cursor:pointer}.primary{background:var(--brand);color:white}.secondary{background:#e8eef0;color:var(--text)}
+.screen{display:none}.screen.active{display:block}.topbar{position:sticky;top:0;z-index:5;background:rgba(243,246,247,.94);backdrop-filter:blur(10px);padding:11px 0;border-bottom:1px solid #e2e9ea}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:10px}.back{background:none;border:0;color:var(--brand);font-size:16px;font-weight:800;padding:8px 2px}.meta{color:var(--muted);font-size:14px}
+.progress{height:8px;background:#e2e9ea;border-radius:999px;overflow:hidden;margin:14px 0}.progress>div{height:100%;background:var(--brand)}
+.card{background:white;border:1px solid var(--line);border-radius:20px;padding:19px;box-shadow:0 5px 18px rgba(0,0,0,.04)}.qnum{color:var(--brand);font-size:13px;font-weight:900}
+.question{font-size:21px;font-weight:800;line-height:1.35;margin:8px 0 17px}.options{display:grid;gap:10px}.option{width:100%;text-align:left;background:#fafcfc;border:1.5px solid var(--line);border-radius:14px;padding:14px;line-height:1.4}
+.option.selected{background:var(--sel);border-color:#77aeb1}.nav{display:flex;justify-content:space-between;gap:10px;margin-top:15px}.nav .btn{flex:1}.hint{font-size:13px;color:var(--muted);margin-top:12px;text-align:center}
+.result-head{text-align:center}.score{font-size:52px;font-weight:900;color:var(--brand);margin:6px 0}.review{margin-top:18px}.review-item{background:white;border:1px solid var(--line);border-radius:16px;padding:15px;margin:10px 0}
+.review-item.good{border-left:5px solid var(--ok)}.review-item.bad{border-left:5px solid var(--bad)}.review-q{font-weight:800;line-height:1.35;margin-bottom:9px}.answerline{font-size:14px;line-height:1.45}.goodtxt{color:var(--ok);font-weight:800}.badtxt{color:var(--bad);font-weight:800}
+.learn-card{background:white;border:1px solid var(--line);border-radius:18px;padding:17px;margin:11px 0}.learn-card h3{margin:5px 0 12px;font-size:18px}.learnopt{padding:10px 12px;background:#fafcfc;border:1px solid var(--line);border-radius:11px;margin:7px 0}
+.learn-card details{margin-top:10px}.solution{margin-top:9px;background:#eef8f1;border:1px solid #bddfc6;color:var(--ok);border-radius:11px;padding:11px;font-weight:800}
+@media(max-width:520px){.question{font-size:19px}.hero h1{font-size:24px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <section class="hero">
-    <h1>🎣 Angelprüfung</h1>
-    <p>Allgemeine Fischkunde – eine app-ähnliche Lernseite für dein iPhone.</p>
-    <div class="row">
-      <div class="badge">39 Fragen</div>
-      <div class="badge">Direkt speicherbar</div>
-      <div class="badge">Home-Bildschirm geeignet</div>
-    </div>
-  </section>
+<section id="home" class="screen active">
+  <div class="hero"><h1>🎣 Angelprüfung</h1><p>Lernen nach Themenbereichen. Im Quiz siehst du die Lösungen erst nach dem Abgeben.</p></div>
 
-  <div class="tabs">
-    <button class="tab active" onclick="showPanel('start',this)">Start</button>
-    <button class="tab" onclick="showPanel('lernen',this)">Lernen</button>
-    <button class="tab" onclick="showPanel('quiz',this)">Quiz</button>
+  <div class="section-title">Themenbereiche</div>
+  <div class="topic">
+    <div class="topic-top"><h2>Allgemeine Fischkunde</h2><div class="count">39 Fragen</div></div>
+    <p>Fischkörper, Flossen, Haut, Maulstellung, Kiemen, Organe, Schwimmblase und weitere Grundlagen.</p>
+    <div class="buttons">
+      <button class="btn primary" onclick="startQuiz()">Quiz starten</button>
+      <button class="btn secondary" onclick="showLearn()">Fragen lernen</button>
+    </div>
   </div>
 
-  <section id="start" class="panel active">
-    <div class="quickgrid">
-      <div class="tile">
-        <h2>Wie speichern?</h2>
-        <p>Öffne diese Datei in Safari, tippe auf <b>Teilen</b> und dann auf <b>Zum Home-Bildschirm</b>. So fühlt es sich fast wie eine App an.</p>
-        <div class="actions">
-          <button class="btn primary" onclick="showPanelById('lernen')">Jetzt lernen</button>
-          <button class="btn secondary" onclick="showPanelById('quiz'); startQuiz();">Schnelltest starten</button>
-        </div>
-      </div>
-      <div class="tile">
-        <h2>Was ist drin?</h2>
-        <p>Alle 39 Fragen aus deinem Bereich <b>Allgemeine Fischkunde</b>, mit Lösungen und einem kleinen Quizmodus.</p>
-      </div>
-    </div>
-    <div class="card">
-      <div class="num">Schnellzugriff</div>
-      <h3 style="margin:6px 0 12px;">Direkt zu einer Frage springen</h3>
-      <div class="listjump">
-        <a href="#frage-1" onclick="showPanelById('lernen')">1</a><a href="#frage-2" onclick="showPanelById('lernen')">2</a><a href="#frage-3" onclick="showPanelById('lernen')">3</a><a href="#frage-4" onclick="showPanelById('lernen')">4</a><a href="#frage-5" onclick="showPanelById('lernen')">5</a><a href="#frage-6" onclick="showPanelById('lernen')">6</a><a href="#frage-7" onclick="showPanelById('lernen')">7</a><a href="#frage-8" onclick="showPanelById('lernen')">8</a><a href="#frage-9" onclick="showPanelById('lernen')">9</a><a href="#frage-10" onclick="showPanelById('lernen')">10</a><a href="#frage-11" onclick="showPanelById('lernen')">11</a><a href="#frage-12" onclick="showPanelById('lernen')">12</a><a href="#frage-13" onclick="showPanelById('lernen')">13</a><a href="#frage-14" onclick="showPanelById('lernen')">14</a><a href="#frage-15" onclick="showPanelById('lernen')">15</a><a href="#frage-16" onclick="showPanelById('lernen')">16</a><a href="#frage-17" onclick="showPanelById('lernen')">17</a><a href="#frage-18" onclick="showPanelById('lernen')">18</a><a href="#frage-19" onclick="showPanelById('lernen')">19</a><a href="#frage-20" onclick="showPanelById('lernen')">20</a><a href="#frage-21" onclick="showPanelById('lernen')">21</a><a href="#frage-22" onclick="showPanelById('lernen')">22</a><a href="#frage-23" onclick="showPanelById('lernen')">23</a><a href="#frage-24" onclick="showPanelById('lernen')">24</a><a href="#frage-25" onclick="showPanelById('lernen')">25</a><a href="#frage-26" onclick="showPanelById('lernen')">26</a><a href="#frage-27" onclick="showPanelById('lernen')">27</a><a href="#frage-28" onclick="showPanelById('lernen')">28</a><a href="#frage-29" onclick="showPanelById('lernen')">29</a><a href="#frage-30" onclick="showPanelById('lernen')">30</a><a href="#frage-31" onclick="showPanelById('lernen')">31</a><a href="#frage-32" onclick="showPanelById('lernen')">32</a><a href="#frage-33" onclick="showPanelById('lernen')">33</a><a href="#frage-34" onclick="showPanelById('lernen')">34</a><a href="#frage-35" onclick="showPanelById('lernen')">35</a><a href="#frage-36" onclick="showPanelById('lernen')">36</a><a href="#frage-37" onclick="showPanelById('lernen')">37</a><a href="#frage-38" onclick="showPanelById('lernen')">38</a><a href="#frage-39" onclick="showPanelById('lernen')">39</a>
-      </div>
-    </div>
-  </section>
+  <div class="section-title">Weitere Themen</div>
+  <div class="topic"><p style="margin:0">Hier kommen später deine nächsten fotografierten Themenbereiche dazu.</p></div>
+</section>
 
-  <section id="lernen" class="panel">
-    <div class="topbar"><div class="inner"><b>Lernmodus</b><span class="small">Antwort antippen oder Lösung aufklappen</span></div></div>
-    
-    <section class="card question" id="frage-1" data-correct="2">
-      <div class="num">Frage 1</div>
-      <h3>Welche Aussage über das Skelett der Neunaugen ist richtig?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q1" value="0" onclick="markAnswer(1,0,2)"> <span><b>a)</b> Die Neunaugen haben kein Stützskelett.</span></label><label class="opt"><input type="radio" name="q1" value="1" onclick="markAnswer(1,1,2)"> <span><b>b)</b> Sie haben ein Knochenskelett.</span></label><label class="opt"><input type="radio" name="q1" value="2" onclick="markAnswer(1,2,2)"> <span><b>c)</b> Sie haben ein knorpeliges Skelett.</span></label></div>
-      <div class="feedback" id="fb-1"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Sie haben ein knorpeliges Skelett.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-2" data-correct="1">
-      <div class="num">Frage 2</div>
-      <h3>Welche aufgeführten Fische gehören zu den Rundmäulern?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q2" value="0" onclick="markAnswer(2,0,1)"> <span><b>a)</b> Stör und Forelle.</span></label><label class="opt"><input type="radio" name="q2" value="1" onclick="markAnswer(2,1,1)"> <span><b>b)</b> Bach- und Flussneunauge.</span></label><label class="opt"><input type="radio" name="q2" value="2" onclick="markAnswer(2,2,1)"> <span><b>c)</b> Karpfen und Barsch.</span></label></div>
-      <div class="feedback" id="fb-2"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Bach- und Flussneunauge.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-3" data-correct="2">
-      <div class="num">Frage 3</div>
-      <h3>Welche Aussage über das Skelett unserer heimischen karpfenartigen Fische ist richtig?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q3" value="0" onclick="markAnswer(3,0,2)"> <span><b>a)</b> Sie haben ein knorpeliges Skelett.</span></label><label class="opt"><input type="radio" name="q3" value="1" onclick="markAnswer(3,1,2)"> <span><b>b)</b> Sie besitzen ein Stützskelett.</span></label><label class="opt"><input type="radio" name="q3" value="2" onclick="markAnswer(3,2,2)"> <span><b>c)</b> Sie haben ein Knochenskelett.</span></label></div>
-      <div class="feedback" id="fb-3"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Sie haben ein Knochenskelett.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-4" data-correct="1">
-      <div class="num">Frage 4</div>
-      <h3>Zu welcher Gruppe unserer Fischfauna gehören die meisten Fischarten?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q4" value="0" onclick="markAnswer(4,0,1)"> <span><b>a)</b> Zur Gruppe der Barschartigen.</span></label><label class="opt"><input type="radio" name="q4" value="1" onclick="markAnswer(4,1,1)"> <span><b>b)</b> Zur Gruppe der Karpfenartigen.</span></label><label class="opt"><input type="radio" name="q4" value="2" onclick="markAnswer(4,2,1)"> <span><b>c)</b> Zur Gruppe der Forellenartigen.</span></label></div>
-      <div class="feedback" id="fb-4"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Zur Gruppe der Karpfenartigen.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-5" data-correct="0">
-      <div class="num">Frage 5</div>
-      <h3>Wozu dienen bei einem Fisch die paarigen Flossen in erster Linie?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q5" value="0" onclick="markAnswer(5,0,0)"> <span><b>a)</b> Der Steuerung und dem Gleichgewicht.</span></label><label class="opt"><input type="radio" name="q5" value="1" onclick="markAnswer(5,1,0)"> <span><b>b)</b> Dem Antrieb.</span></label><label class="opt"><input type="radio" name="q5" value="2" onclick="markAnswer(5,2,0)"> <span><b>c)</b> Der Stabilisation.</span></label></div>
-      <div class="feedback" id="fb-5"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Der Steuerung und dem Gleichgewicht.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-6" data-correct="2">
-      <div class="num">Frage 6</div>
-      <h3>Welche aufgeführte Flosse ist beim Fisch paarig vorhanden?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q6" value="0" onclick="markAnswer(6,0,2)"> <span><b>a)</b> Die Schwanzflosse.</span></label><label class="opt"><input type="radio" name="q6" value="1" onclick="markAnswer(6,1,2)"> <span><b>b)</b> Die Fettflosse.</span></label><label class="opt"><input type="radio" name="q6" value="2" onclick="markAnswer(6,2,2)"> <span><b>c)</b> Die Brustflosse.</span></label></div>
-      <div class="feedback" id="fb-6"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Die Brustflosse.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-7" data-correct="2">
-      <div class="num">Frage 7</div>
-      <h3>Welche Aufgabe erfüllt die Schwanzflosse des Fisches?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q7" value="0" onclick="markAnswer(7,0,2)"> <span><b>a)</b> Sie dient zur Stabilisation des Fisches.</span></label><label class="opt"><input type="radio" name="q7" value="1" onclick="markAnswer(7,1,2)"> <span><b>b)</b> Sie wird zur Steuerung benötigt.</span></label><label class="opt"><input type="radio" name="q7" value="2" onclick="markAnswer(7,2,2)"> <span><b>c)</b> Sie dient dem Fisch als Antrieb.</span></label></div>
-      <div class="feedback" id="fb-7"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Sie dient dem Fisch als Antrieb.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-8" data-correct="0">
-      <div class="num">Frage 8</div>
-      <h3>Welche Aussage über die Fettflosse bei den Fischen ist richtig?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q8" value="0" onclick="markAnswer(8,0,0)"> <span><b>a)</b> Nur einige Fischarten haben eine Fettflosse.</span></label><label class="opt"><input type="radio" name="q8" value="1" onclick="markAnswer(8,1,0)"> <span><b>b)</b> Die Fettflosse dient den Fischen zur Steuerung.</span></label><label class="opt"><input type="radio" name="q8" value="2" onclick="markAnswer(8,2,0)"> <span><b>c)</b> Alle Fische haben eine Fettflosse.</span></label></div>
-      <div class="feedback" id="fb-8"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Nur einige Fischarten haben eine Fettflosse.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-9" data-correct="1">
-      <div class="num">Frage 9</div>
-      <h3>Wo befinden sich in der Fischhaut die Schleimdrüsen?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q9" value="0" onclick="markAnswer(9,0,1)"> <span><b>a)</b> An allen Flossen.</span></label><label class="opt"><input type="radio" name="q9" value="1" onclick="markAnswer(9,1,1)"> <span><b>b)</b> In der Oberhaut (Epidermis).</span></label><label class="opt"><input type="radio" name="q9" value="2" onclick="markAnswer(9,2,1)"> <span><b>c)</b> In der Unterhaut (Lederhaut).</span></label></div>
-      <div class="feedback" id="fb-9"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) In der Oberhaut (Epidermis).</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-10" data-correct="2">
-      <div class="num">Frage 10</div>
-      <h3>Wo befinden sich bei einem Fisch Schuppen, Farbzellen und Lymphgefäße?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q10" value="0" onclick="markAnswer(10,0,2)"> <span><b>a)</b> Im Muskelgewebe.</span></label><label class="opt"><input type="radio" name="q10" value="1" onclick="markAnswer(10,1,2)"> <span><b>b)</b> In der Schleimhaut.</span></label><label class="opt"><input type="radio" name="q10" value="2" onclick="markAnswer(10,2,2)"> <span><b>c)</b> In der Lederhaut.</span></label></div>
-      <div class="feedback" id="fb-10"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) In der Lederhaut.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-11" data-correct="1">
-      <div class="num">Frage 11</div>
-      <h3>Welche Aufgabe hat die Schleimhaut eines Fisches?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q11" value="0" onclick="markAnswer(11,0,1)"> <span><b>a)</b> Sie ist für die Färbung des Fisches verantwortlich.</span></label><label class="opt"><input type="radio" name="q11" value="1" onclick="markAnswer(11,1,1)"> <span><b>b)</b> Sie schützt den Fisch gegen äußere Einflüsse und vermindert beim Schwimmen den Reibungswiderstand seines Körpers.</span></label><label class="opt"><input type="radio" name="q11" value="2" onclick="markAnswer(11,2,1)"> <span><b>c)</b> Sie gibt den Schuppen den nötigen Halt.</span></label></div>
-      <div class="feedback" id="fb-11"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Sie schützt den Fisch gegen äußere Einflüsse und vermindert beim Schwimmen den Reibungswiderstand seines Körpers.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-12" data-correct="2">
-      <div class="num">Frage 12</div>
-      <h3>Wie werden die in der Durchsicht hell erscheinenden Ringe und Bögen in der Fischschuppe bezeichnet?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q12" value="0" onclick="markAnswer(12,0,2)"> <span><b>a)</b> Sie werden als Laichringe bezeichnet.</span></label><label class="opt"><input type="radio" name="q12" value="1" onclick="markAnswer(12,1,2)"> <span><b>b)</b> Sie werden als Winterringe bezeichnet.</span></label><label class="opt"><input type="radio" name="q12" value="2" onclick="markAnswer(12,2,2)"> <span><b>c)</b> Sie werden als Sommerringe bezeichnet.</span></label></div>
-      <div class="feedback" id="fb-12"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Sie werden als Sommerringe bezeichnet.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-13" data-correct="0">
-      <div class="num">Frage 13</div>
-      <h3>Worauf weisen die in der Durchsicht dunkel erscheinenden Ringe und Bögen in der Fischschuppe hin?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q13" value="0" onclick="markAnswer(13,0,0)"> <span><b>a)</b> Auf die Wachstumsperiode im Winter.</span></label><label class="opt"><input type="radio" name="q13" value="1" onclick="markAnswer(13,1,0)"> <span><b>b)</b> Auf die Wachstumsperiode im Sommer.</span></label><label class="opt"><input type="radio" name="q13" value="2" onclick="markAnswer(13,2,0)"> <span><b>c)</b> Es sind Laichringe, die darauf hinweisen, wie oft der Fisch abgelaicht hat.</span></label></div>
-      <div class="feedback" id="fb-13"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Auf die Wachstumsperiode im Winter.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-14" data-correct="1">
-      <div class="num">Frage 14</div>
-      <h3>Welche der folgenden Aussagen über die Beschuppung der Fische ist richtig?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q14" value="0" onclick="markAnswer(14,0,1)"> <span><b>a)</b> Die Rutte und der Aal haben keine Schuppen.</span></label><label class="opt"><input type="radio" name="q14" value="1" onclick="markAnswer(14,1,1)"> <span><b>b)</b> Der Wels sowie der Zwergwels sind schuppenlos.</span></label><label class="opt"><input type="radio" name="q14" value="2" onclick="markAnswer(14,2,1)"> <span><b>c)</b> Keine Schuppen haben die Barbe und die Nase.</span></label></div>
-      <div class="feedback" id="fb-14"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Der Wels sowie der Zwergwels sind schuppenlos.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-15" data-correct="2">
-      <div class="num">Frage 15</div>
-      <h3>An welchen Teilen des Fischkörpers kann das ungefähre Alter des Fisches festgestellt werden?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q15" value="0" onclick="markAnswer(15,0,2)"> <span><b>a)</b> An der Stärke der Haut und an der Anzahl der Flossenstrahlen.</span></label><label class="opt"><input type="radio" name="q15" value="1" onclick="markAnswer(15,1,2)"> <span><b>b)</b> An der Anzahl und Länge der Kiemendorne.</span></label><label class="opt"><input type="radio" name="q15" value="2" onclick="markAnswer(15,2,2)"> <span><b>c)</b> An den Schuppen und den Kiemendeckeln.</span></label></div>
-      <div class="feedback" id="fb-15"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) An den Schuppen und den Kiemendeckeln.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-16" data-correct="1">
-      <div class="num">Frage 16</div>
-      <h3>Wodurch erfolgt bei den Fischen die Laichfärbung?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q16" value="0" onclick="markAnswer(16,0,1)"> <span><b>a)</b> Durch das Auge.</span></label><label class="opt"><input type="radio" name="q16" value="1" onclick="markAnswer(16,1,1)"> <span><b>b)</b> Durch Hormone und Farbzellen.</span></label><label class="opt"><input type="radio" name="q16" value="2" onclick="markAnswer(16,2,1)"> <span><b>c)</b> Durch das Gehirn.</span></label></div>
-      <div class="feedback" id="fb-16"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Durch Hormone und Farbzellen.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-17" data-correct="0">
-      <div class="num">Frage 17</div>
-      <h3>Was ist Laichausschlag?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q17" value="0" onclick="markAnswer(17,0,0)"> <span><b>a)</b> Die bei vielen Karpfenfischen perlatigen, kleinen Auswüchse in der Oberhaut zur Laichzeit.</span></label><label class="opt"><input type="radio" name="q17" value="1" onclick="markAnswer(17,1,0)"> <span><b>b)</b> Eine beim Laichspiel zugezogene Hautverletzung, die sich entzündet hat.</span></label><label class="opt"><input type="radio" name="q17" value="2" onclick="markAnswer(17,2,0)"> <span><b>c)</b> Ein Kennzeichen, dass der Fisch bereits abgelaicht hat.</span></label></div>
-      <div class="feedback" id="fb-17"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Die bei vielen Karpfenfischen perlatigen, kleinen Auswüchse in der Oberhaut zur Laichzeit.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-18" data-correct="2">
-      <div class="num">Frage 18</div>
-      <h3>Welche 4 Farben weist im Wesentlichen ein Fisch auf?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q18" value="0" onclick="markAnswer(18,0,2)"> <span><b>a)</b> Schwarz, Gelb, Blau und Braun.</span></label><label class="opt"><input type="radio" name="q18" value="1" onclick="markAnswer(18,1,2)"> <span><b>b)</b> Silber, Rot, Grün und Blau.</span></label><label class="opt"><input type="radio" name="q18" value="2" onclick="markAnswer(18,2,2)"> <span><b>c)</b> Silber, Schwarz, Rot und Gelb.</span></label></div>
-      <div class="feedback" id="fb-18"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Silber, Schwarz, Rot und Gelb.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-19" data-correct="0">
-      <div class="num">Frage 19</div>
-      <h3>Ein Unterscheidungsmerkmal bei den Fischen ist die Maulstellung, welche Aufzählung ist richtig?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q19" value="0" onclick="markAnswer(19,0,0)"> <span><b>a)</b> Ober-, unter- und endständiges Maul.</span></label><label class="opt"><input type="radio" name="q19" value="1" onclick="markAnswer(19,1,0)"> <span><b>b)</b> Ober-, end- und langständiges Maul.</span></label><label class="opt"><input type="radio" name="q19" value="2" onclick="markAnswer(19,2,0)"> <span><b>c)</b> End-, lang- und hochständiges Maul.</span></label></div>
-      <div class="feedback" id="fb-19"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Ober-, unter- und endständiges Maul.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-20" data-correct="1">
-      <div class="num">Frage 20</div>
-      <h3>Worauf lässt das oberständige Maul eines Fisches schließen?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q20" value="0" onclick="markAnswer(20,0,1)"> <span><b>a)</b> Dass der Fisch ein großer Räuber ist.</span></label><label class="opt"><input type="radio" name="q20" value="1" onclick="markAnswer(20,1,1)"> <span><b>b)</b> Dass der Fisch überwiegend Oberflächennahrung verzehrt.</span></label><label class="opt"><input type="radio" name="q20" value="2" onclick="markAnswer(20,2,1)"> <span><b>c)</b> Dass der Fisch Bodennahrung bevorzugt.</span></label></div>
-      <div class="feedback" id="fb-20"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Dass der Fisch überwiegend Oberflächennahrung verzehrt.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-21" data-correct="2">
-      <div class="num">Frage 21</div>
-      <h3>Bei welchen Fischen dient die Bezahnung des Pflugscharbeins als Unterscheidungsmerkmal?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q21" value="0" onclick="markAnswer(21,0,2)"> <span><b>a)</b> Bei den barschartigen Fischen.</span></label><label class="opt"><input type="radio" name="q21" value="1" onclick="markAnswer(21,1,2)"> <span><b>b)</b> Bei den karpfenartigen Fischen.</span></label><label class="opt"><input type="radio" name="q21" value="2" onclick="markAnswer(21,2,2)"> <span><b>c)</b> Bei den lachsartigen Fischen.</span></label></div>
-      <div class="feedback" id="fb-21"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Bei den lachsartigen Fischen.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-22" data-correct="1">
-      <div class="num">Frage 22</div>
-      <h3>Welche Fische haben Schlundzähne?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q22" value="0" onclick="markAnswer(22,0,1)"> <span><b>a)</b> Forellen, Hechte und Zander.</span></label><label class="opt"><input type="radio" name="q22" value="1" onclick="markAnswer(22,1,1)"> <span><b>b)</b> Brachsen (Brassen oder Blei), Rotfedern und Karpfen.</span></label><label class="opt"><input type="radio" name="q22" value="2" onclick="markAnswer(22,2,1)"> <span><b>c)</b> Dorsche, Streber und Barsche.</span></label></div>
-      <div class="feedback" id="fb-22"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Brachsen (Brassen oder Blei), Rotfedern und Karpfen.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-23" data-correct="0">
-      <div class="num">Frage 23</div>
-      <h3>Wo befinden sich bei einem Fisch die Nasengruben?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q23" value="0" onclick="markAnswer(23,0,0)"> <span><b>a)</b> Im Fischschädel, vor den Augen.</span></label><label class="opt"><input type="radio" name="q23" value="1" onclick="markAnswer(23,1,0)"> <span><b>b)</b> Unter der Maulspalte.</span></label><label class="opt"><input type="radio" name="q23" value="2" onclick="markAnswer(23,2,0)"> <span><b>c)</b> Hinter dem Kiemenbogen.</span></label></div>
-      <div class="feedback" id="fb-23"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Im Fischschädel, vor den Augen.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-24" data-correct="1">
-      <div class="num">Frage 24</div>
-      <h3>Womit nimmt der Fisch den Sauerstoff aus dem Wasser auf?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q24" value="0" onclick="markAnswer(24,0,1)"> <span><b>a)</b> Mit dem Schlund.</span></label><label class="opt"><input type="radio" name="q24" value="1" onclick="markAnswer(24,1,1)"> <span><b>b)</b> Mit den Kiemen.</span></label><label class="opt"><input type="radio" name="q24" value="2" onclick="markAnswer(24,2,1)"> <span><b>c)</b> Über die Seitenlinie.</span></label></div>
-      <div class="feedback" id="fb-24"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Mit den Kiemen.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-25" data-correct="0">
-      <div class="num">Frage 25</div>
-      <h3>Was hat es zu bedeuten, wenn die Fische mit dem Maul über die Wasseroberfläche drängen?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q25" value="0" onclick="markAnswer(25,0,0)"> <span><b>a)</b> Es besteht Sauerstoffmangel im Wasser.</span></label><label class="opt"><input type="radio" name="q25" value="1" onclick="markAnswer(25,1,0)"> <span><b>b)</b> Es besteht Nahrungsmangel.</span></label><label class="opt"><input type="radio" name="q25" value="2" onclick="markAnswer(25,2,0)"> <span><b>c)</b> Das Wasser ist zu kalt.</span></label></div>
-      <div class="feedback" id="fb-25"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Es besteht Sauerstoffmangel im Wasser.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-26" data-correct="1">
-      <div class="num">Frage 26</div>
-      <h3>Welche der aufgeführten Fische haben für den Menschen besonders schleimhautreizendes Blut?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q26" value="0" onclick="markAnswer(26,0,1)"> <span><b>a)</b> Der Kaulbarsch und der Barsch.</span></label><label class="opt"><input type="radio" name="q26" value="1" onclick="markAnswer(26,1,1)"> <span><b>b)</b> Der Wels sowie der Aal.</span></label><label class="opt"><input type="radio" name="q26" value="2" onclick="markAnswer(26,2,1)"> <span><b>c)</b> Die Barbe und der Giebel.</span></label></div>
-      <div class="feedback" id="fb-26"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Der Wels sowie der Aal.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-27" data-correct="0">
-      <div class="num">Frage 27</div>
-      <h3>Was ist für die Temperatur des Fischblutes maßgebend?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q27" value="0" onclick="markAnswer(27,0,0)"> <span><b>a)</b> Die Wassertemperatur.</span></label><label class="opt"><input type="radio" name="q27" value="1" onclick="markAnswer(27,1,0)"> <span><b>b)</b> Die gute Nahrungsaufnahme.</span></label><label class="opt"><input type="radio" name="q27" value="2" onclick="markAnswer(27,2,0)"> <span><b>c)</b> Die schnelle oder langsame Fortbewegung des Fisches im Wasser.</span></label></div>
-      <div class="feedback" id="fb-27"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Die Wassertemperatur.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-28" data-correct="2">
-      <div class="num">Frage 28</div>
-      <h3>Welche Aussage über die Sauerstoffanreicherung im Fischblut ist richtig?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q28" value="0" onclick="markAnswer(28,0,2)"> <span><b>a)</b> Das Fischblut wird in den Nieren mit Sauerstoff angereichert.</span></label><label class="opt"><input type="radio" name="q28" value="1" onclick="markAnswer(28,1,2)"> <span><b>b)</b> Die Sauerstoffanreicherung des Fischblutes findet im Fischherz statt.</span></label><label class="opt"><input type="radio" name="q28" value="2" onclick="markAnswer(28,2,2)"> <span><b>c)</b> Die Sauerstoffanreicherung des Fischblutes erfolgt in den Kiemen.</span></label></div>
-      <div class="feedback" id="fb-28"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Die Sauerstoffanreicherung des Fischblutes erfolgt in den Kiemen.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-29" data-correct="2">
-      <div class="num">Frage 29</div>
-      <h3>Wo sitzt bei einem Fisch das Herz?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q29" value="0" onclick="markAnswer(29,0,2)"> <span><b>a)</b> Zwischen Schädelende und Rückenflosse.</span></label><label class="opt"><input type="radio" name="q29" value="1" onclick="markAnswer(29,1,2)"> <span><b>b)</b> In der Fischmitte, zwischen dem Kopf und dem After des Fisches.</span></label><label class="opt"><input type="radio" name="q29" value="2" onclick="markAnswer(29,2,2)"> <span><b>c)</b> In der Kehlgegend.</span></label></div>
-      <div class="feedback" id="fb-29"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) In der Kehlgegend.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-30" data-correct="0">
-      <div class="num">Frage 30</div>
-      <h3>Warum werden Fische als wechselwarme Tiere bezeichnet?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q30" value="0" onclick="markAnswer(30,0,0)"> <span><b>a)</b> Weil sich ihre Körpertemperatur der jeweiligen Wassertemperatur angleicht.</span></label><label class="opt"><input type="radio" name="q30" value="1" onclick="markAnswer(30,1,0)"> <span><b>b)</b> Weil sie ihre Körpertemperatur unabhängig von der Wassertemperatur wechseln können.</span></label><label class="opt"><input type="radio" name="q30" value="2" onclick="markAnswer(30,2,0)"> <span><b>c)</b> Weil ihre Körpertemperatur in den unterschiedlichen Altersstufen wechselt.</span></label></div>
-      <div class="feedback" id="fb-30"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Weil sich ihre Körpertemperatur der jeweiligen Wassertemperatur angleicht.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-31" data-correct="2">
-      <div class="num">Frage 31</div>
-      <h3>Was für eine Schwimmblase haben Cypriniden (Karpfenartige Fische)?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q31" value="0" onclick="markAnswer(31,0,2)"> <span><b>a)</b> Eine einteilige Schwimmblase.</span></label><label class="opt"><input type="radio" name="q31" value="1" onclick="markAnswer(31,1,2)"> <span><b>b)</b> Eine zweiteilige Schwimmblase ohne Verbindung zum Schlund.</span></label><label class="opt"><input type="radio" name="q31" value="2" onclick="markAnswer(31,2,2)"> <span><b>c)</b> Eine zweiteilige Schwimmblase mit Verbindung zum Vorderdarm.</span></label></div>
-      <div class="feedback" id="fb-31"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Eine zweiteilige Schwimmblase mit Verbindung zum Vorderdarm.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-32" data-correct="0">
-      <div class="num">Frage 32</div>
-      <h3>Welche Hauptaufgabe erfüllt die Schwimmblase der Fische?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q32" value="0" onclick="markAnswer(32,0,0)"> <span><b>a)</b> Sie ermöglicht durch Auftrieb die Schwerelosigkeit des Fisches.</span></label><label class="opt"><input type="radio" name="q32" value="1" onclick="markAnswer(32,1,0)"> <span><b>b)</b> Sie ermöglicht eine bessere Verdauung der aufgenommenen Nahrung.</span></label><label class="opt"><input type="radio" name="q32" value="2" onclick="markAnswer(32,2,0)"> <span><b>c)</b> Sie ermöglicht eine bessere Funktion der Gallenblase.</span></label></div>
-      <div class="feedback" id="fb-32"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Sie ermöglicht durch Auftrieb die Schwerelosigkeit des Fisches.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-33" data-correct="1">
-      <div class="num">Frage 33</div>
-      <h3>Wie verändert sich die Schwimmblase der Fische beim raschen Aufsteigen?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q33" value="0" onclick="markAnswer(33,0,1)"> <span><b>a)</b> Sie verkleinert sich.</span></label><label class="opt"><input type="radio" name="q33" value="1" onclick="markAnswer(33,1,1)"> <span><b>b)</b> Sie dehnt sich aus.</span></label><label class="opt"><input type="radio" name="q33" value="2" onclick="markAnswer(33,2,1)"> <span><b>c)</b> Sie verändert sich nicht.</span></label></div>
-      <div class="feedback" id="fb-33"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Sie dehnt sich aus.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-34" data-correct="2">
-      <div class="num">Frage 34</div>
-      <h3>Welche Farbe hat bei den meisten Süßwasserfischen die gesunde Leber?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q34" value="0" onclick="markAnswer(34,0,2)"> <span><b>a)</b> Hellgelb.</span></label><label class="opt"><input type="radio" name="q34" value="1" onclick="markAnswer(34,1,2)"> <span><b>b)</b> Hellbraun.</span></label><label class="opt"><input type="radio" name="q34" value="2" onclick="markAnswer(34,2,2)"> <span><b>c)</b> Dunkelrot.</span></label></div>
-      <div class="feedback" id="fb-34"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Dunkelrot.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-35" data-correct="2">
-      <div class="num">Frage 35</div>
-      <h3>Bei welchen gesunden Süßwasserfischen hat die Leber eine andere Farbe als dunkelrot?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q35" value="0" onclick="markAnswer(35,0,2)"> <span><b>a)</b> Bei den Barschen.</span></label><label class="opt"><input type="radio" name="q35" value="1" onclick="markAnswer(35,1,2)"> <span><b>b)</b> Bei den Forellen.</span></label><label class="opt"><input type="radio" name="q35" value="2" onclick="markAnswer(35,2,2)"> <span><b>c)</b> Bei den Hechten und bei den Aalquappen (Rutten).</span></label></div>
-      <div class="feedback" id="fb-35"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Bei den Hechten und bei den Aalquappen (Rutten).</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-36" data-correct="0">
-      <div class="num">Frage 36</div>
-      <h3>Wo befinden sich bei einem Fisch die Nieren?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q36" value="0" onclick="markAnswer(36,0,0)"> <span><b>a)</b> Unter der Wirbelsäule vom Kopfansatz bis teilweise hinter den After.</span></label><label class="opt"><input type="radio" name="q36" value="1" onclick="markAnswer(36,1,0)"> <span><b>b)</b> Unter der Wirbelsäule vom After bis zum Schwanz.</span></label><label class="opt"><input type="radio" name="q36" value="2" onclick="markAnswer(36,2,0)"> <span><b>c)</b> Neben dem Herzen.</span></label></div>
-      <div class="feedback" id="fb-36"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ a) Unter der Wirbelsäule vom Kopfansatz bis teilweise hinter den After.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-37" data-correct="1">
-      <div class="num">Frage 37</div>
-      <h3>Wo verläuft bei den Fischen das Rückenmark?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q37" value="0" onclick="markAnswer(37,0,1)"> <span><b>a)</b> Unterhalb der Wirbelsäule innerhalb des Nierenkanals.</span></label><label class="opt"><input type="radio" name="q37" value="1" onclick="markAnswer(37,1,1)"> <span><b>b)</b> Oberhalb des Wirbelkörpers in einem Kanal, den die oberen Wirbelfortsätze bilden.</span></label><label class="opt"><input type="radio" name="q37" value="2" onclick="markAnswer(37,2,1)"> <span><b>c)</b> An den Seitenlinien innerhalb des Nervenkanals.</span></label></div>
-      <div class="feedback" id="fb-37"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Oberhalb des Wirbelkörpers in einem Kanal, den die oberen Wirbelfortsätze bilden.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-38" data-correct="1">
-      <div class="num">Frage 38</div>
-      <h3>Welche aufgeführte Aussage über Schmerzen bei Fischen ist richtig?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q38" value="0" onclick="markAnswer(38,0,1)"> <span><b>a)</b> Fische können keine Schmerzen empfinden.</span></label><label class="opt"><input type="radio" name="q38" value="1" onclick="markAnswer(38,1,1)"> <span><b>b)</b> Fische können Schmerzen empfinden.</span></label><label class="opt"><input type="radio" name="q38" value="2" onclick="markAnswer(38,2,1)"> <span><b>c)</b> Nur wenn das Wasser stark verschmutzt ist, empfinden Fische Schmerzen.</span></label></div>
-      <div class="feedback" id="fb-38"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ b) Fische können Schmerzen empfinden.</div>
-      </details>
-    </section>
-    
-    <section class="card question" id="frage-39" data-correct="2">
-      <div class="num">Frage 39</div>
-      <h3>Wie ist der Geschmackssinn der Fische ausgebildet?</h3>
-      <div class="opts"><label class="opt"><input type="radio" name="q39" value="0" onclick="markAnswer(39,0,2)"> <span><b>a)</b> Gar nicht.</span></label><label class="opt"><input type="radio" name="q39" value="1" onclick="markAnswer(39,1,2)"> <span><b>b)</b> Schlecht.</span></label><label class="opt"><input type="radio" name="q39" value="2" onclick="markAnswer(39,2,2)"> <span><b>c)</b> Sehr gut.</span></label></div>
-      <div class="feedback" id="fb-39"></div>
-      <details class="manual">
-        <summary>Lösung anzeigen</summary>
-        <div class="solution">✓ c) Sehr gut.</div>
-      </details>
-    </section>
-    
-  </section>
+<section id="quiz" class="screen">
+  <div class="topbar"><div class="topbar-inner"><button class="back" onclick="goHome()">‹ Start</button><b>Allgemeine Fischkunde</b><span class="meta" id="quizMeta"></span></div></div>
+  <div class="progress"><div id="bar"></div></div>
+  <div id="quizCard"></div>
+</section>
 
-  <section id="quiz" class="panel">
-    <div class="card" id="quizHome">
-      <div class="num">Quizmodus</div>
-      <h3 style="margin:6px 0 8px;">10 Fragen Schnelltest</h3>
-      <p class="small">Zufällig gemischte Fragen, Punktestand am Ende.</p>
-      <div class="actions">
-        <button class="btn primary" onclick="startQuiz()">Quiz starten</button>
-      </div>
-    </div>
-    <div id="quizArea"></div>
-  </section>
+<section id="results" class="screen">
+  <div class="topbar"><div class="topbar-inner"><button class="back" onclick="goHome()">‹ Start</button><b>Auswertung</b><span></span></div></div>
+  <div id="resultBody"></div>
+</section>
 
-  <footer>Privater Lernmodus • erstellt für dein iPhone</footer>
+<section id="learn" class="screen">
+  <div class="topbar"><div class="topbar-inner"><button class="back" onclick="goHome()">‹ Start</button><b>Allgemeine Fischkunde</b><span class="meta">39 Fragen</span></div></div>
+  <div id="learnBody"></div>
+</section>
 </div>
 
 <script>
-const QUESTIONS = [{"n": 1, "q": "Welche Aussage über das Skelett der Neunaugen ist richtig?", "a": ["Die Neunaugen haben kein Stützskelett.", "Sie haben ein Knochenskelett.", "Sie haben ein knorpeliges Skelett."], "correct": 2}, {"n": 2, "q": "Welche aufgeführten Fische gehören zu den Rundmäulern?", "a": ["Stör und Forelle.", "Bach- und Flussneunauge.", "Karpfen und Barsch."], "correct": 1}, {"n": 3, "q": "Welche Aussage über das Skelett unserer heimischen karpfenartigen Fische ist richtig?", "a": ["Sie haben ein knorpeliges Skelett.", "Sie besitzen ein Stützskelett.", "Sie haben ein Knochenskelett."], "correct": 2}, {"n": 4, "q": "Zu welcher Gruppe unserer Fischfauna gehören die meisten Fischarten?", "a": ["Zur Gruppe der Barschartigen.", "Zur Gruppe der Karpfenartigen.", "Zur Gruppe der Forellenartigen."], "correct": 1}, {"n": 5, "q": "Wozu dienen bei einem Fisch die paarigen Flossen in erster Linie?", "a": ["Der Steuerung und dem Gleichgewicht.", "Dem Antrieb.", "Der Stabilisation."], "correct": 0}, {"n": 6, "q": "Welche aufgeführte Flosse ist beim Fisch paarig vorhanden?", "a": ["Die Schwanzflosse.", "Die Fettflosse.", "Die Brustflosse."], "correct": 2}, {"n": 7, "q": "Welche Aufgabe erfüllt die Schwanzflosse des Fisches?", "a": ["Sie dient zur Stabilisation des Fisches.", "Sie wird zur Steuerung benötigt.", "Sie dient dem Fisch als Antrieb."], "correct": 2}, {"n": 8, "q": "Welche Aussage über die Fettflosse bei den Fischen ist richtig?", "a": ["Nur einige Fischarten haben eine Fettflosse.", "Die Fettflosse dient den Fischen zur Steuerung.", "Alle Fische haben eine Fettflosse."], "correct": 0}, {"n": 9, "q": "Wo befinden sich in der Fischhaut die Schleimdrüsen?", "a": ["An allen Flossen.", "In der Oberhaut (Epidermis).", "In der Unterhaut (Lederhaut)."], "correct": 1}, {"n": 10, "q": "Wo befinden sich bei einem Fisch Schuppen, Farbzellen und Lymphgefäße?", "a": ["Im Muskelgewebe.", "In der Schleimhaut.", "In der Lederhaut."], "correct": 2}, {"n": 11, "q": "Welche Aufgabe hat die Schleimhaut eines Fisches?", "a": ["Sie ist für die Färbung des Fisches verantwortlich.", "Sie schützt den Fisch gegen äußere Einflüsse und vermindert beim Schwimmen den Reibungswiderstand seines Körpers.", "Sie gibt den Schuppen den nötigen Halt."], "correct": 1}, {"n": 12, "q": "Wie werden die in der Durchsicht hell erscheinenden Ringe und Bögen in der Fischschuppe bezeichnet?", "a": ["Sie werden als Laichringe bezeichnet.", "Sie werden als Winterringe bezeichnet.", "Sie werden als Sommerringe bezeichnet."], "correct": 2}, {"n": 13, "q": "Worauf weisen die in der Durchsicht dunkel erscheinenden Ringe und Bögen in der Fischschuppe hin?", "a": ["Auf die Wachstumsperiode im Winter.", "Auf die Wachstumsperiode im Sommer.", "Es sind Laichringe, die darauf hinweisen, wie oft der Fisch abgelaicht hat."], "correct": 0}, {"n": 14, "q": "Welche der folgenden Aussagen über die Beschuppung der Fische ist richtig?", "a": ["Die Rutte und der Aal haben keine Schuppen.", "Der Wels sowie der Zwergwels sind schuppenlos.", "Keine Schuppen haben die Barbe und die Nase."], "correct": 1}, {"n": 15, "q": "An welchen Teilen des Fischkörpers kann das ungefähre Alter des Fisches festgestellt werden?", "a": ["An der Stärke der Haut und an der Anzahl der Flossenstrahlen.", "An der Anzahl und Länge der Kiemendorne.", "An den Schuppen und den Kiemendeckeln."], "correct": 2}, {"n": 16, "q": "Wodurch erfolgt bei den Fischen die Laichfärbung?", "a": ["Durch das Auge.", "Durch Hormone und Farbzellen.", "Durch das Gehirn."], "correct": 1}, {"n": 17, "q": "Was ist Laichausschlag?", "a": ["Die bei vielen Karpfenfischen perlatigen, kleinen Auswüchse in der Oberhaut zur Laichzeit.", "Eine beim Laichspiel zugezogene Hautverletzung, die sich entzündet hat.", "Ein Kennzeichen, dass der Fisch bereits abgelaicht hat."], "correct": 0}, {"n": 18, "q": "Welche 4 Farben weist im Wesentlichen ein Fisch auf?", "a": ["Schwarz, Gelb, Blau und Braun.", "Silber, Rot, Grün und Blau.", "Silber, Schwarz, Rot und Gelb."], "correct": 2}, {"n": 19, "q": "Ein Unterscheidungsmerkmal bei den Fischen ist die Maulstellung, welche Aufzählung ist richtig?", "a": ["Ober-, unter- und endständiges Maul.", "Ober-, end- und langständiges Maul.", "End-, lang- und hochständiges Maul."], "correct": 0}, {"n": 20, "q": "Worauf lässt das oberständige Maul eines Fisches schließen?", "a": ["Dass der Fisch ein großer Räuber ist.", "Dass der Fisch überwiegend Oberflächennahrung verzehrt.", "Dass der Fisch Bodennahrung bevorzugt."], "correct": 1}, {"n": 21, "q": "Bei welchen Fischen dient die Bezahnung des Pflugscharbeins als Unterscheidungsmerkmal?", "a": ["Bei den barschartigen Fischen.", "Bei den karpfenartigen Fischen.", "Bei den lachsartigen Fischen."], "correct": 2}, {"n": 22, "q": "Welche Fische haben Schlundzähne?", "a": ["Forellen, Hechte und Zander.", "Brachsen (Brassen oder Blei), Rotfedern und Karpfen.", "Dorsche, Streber und Barsche."], "correct": 1}, {"n": 23, "q": "Wo befinden sich bei einem Fisch die Nasengruben?", "a": ["Im Fischschädel, vor den Augen.", "Unter der Maulspalte.", "Hinter dem Kiemenbogen."], "correct": 0}, {"n": 24, "q": "Womit nimmt der Fisch den Sauerstoff aus dem Wasser auf?", "a": ["Mit dem Schlund.", "Mit den Kiemen.", "Über die Seitenlinie."], "correct": 1}, {"n": 25, "q": "Was hat es zu bedeuten, wenn die Fische mit dem Maul über die Wasseroberfläche drängen?", "a": ["Es besteht Sauerstoffmangel im Wasser.", "Es besteht Nahrungsmangel.", "Das Wasser ist zu kalt."], "correct": 0}, {"n": 26, "q": "Welche der aufgeführten Fische haben für den Menschen besonders schleimhautreizendes Blut?", "a": ["Der Kaulbarsch und der Barsch.", "Der Wels sowie der Aal.", "Die Barbe und der Giebel."], "correct": 1}, {"n": 27, "q": "Was ist für die Temperatur des Fischblutes maßgebend?", "a": ["Die Wassertemperatur.", "Die gute Nahrungsaufnahme.", "Die schnelle oder langsame Fortbewegung des Fisches im Wasser."], "correct": 0}, {"n": 28, "q": "Welche Aussage über die Sauerstoffanreicherung im Fischblut ist richtig?", "a": ["Das Fischblut wird in den Nieren mit Sauerstoff angereichert.", "Die Sauerstoffanreicherung des Fischblutes findet im Fischherz statt.", "Die Sauerstoffanreicherung des Fischblutes erfolgt in den Kiemen."], "correct": 2}, {"n": 29, "q": "Wo sitzt bei einem Fisch das Herz?", "a": ["Zwischen Schädelende und Rückenflosse.", "In der Fischmitte, zwischen dem Kopf und dem After des Fisches.", "In der Kehlgegend."], "correct": 2}, {"n": 30, "q": "Warum werden Fische als wechselwarme Tiere bezeichnet?", "a": ["Weil sich ihre Körpertemperatur der jeweiligen Wassertemperatur angleicht.", "Weil sie ihre Körpertemperatur unabhängig von der Wassertemperatur wechseln können.", "Weil ihre Körpertemperatur in den unterschiedlichen Altersstufen wechselt."], "correct": 0}, {"n": 31, "q": "Was für eine Schwimmblase haben Cypriniden (Karpfenartige Fische)?", "a": ["Eine einteilige Schwimmblase.", "Eine zweiteilige Schwimmblase ohne Verbindung zum Schlund.", "Eine zweiteilige Schwimmblase mit Verbindung zum Vorderdarm."], "correct": 2}, {"n": 32, "q": "Welche Hauptaufgabe erfüllt die Schwimmblase der Fische?", "a": ["Sie ermöglicht durch Auftrieb die Schwerelosigkeit des Fisches.", "Sie ermöglicht eine bessere Verdauung der aufgenommenen Nahrung.", "Sie ermöglicht eine bessere Funktion der Gallenblase."], "correct": 0}, {"n": 33, "q": "Wie verändert sich die Schwimmblase der Fische beim raschen Aufsteigen?", "a": ["Sie verkleinert sich.", "Sie dehnt sich aus.", "Sie verändert sich nicht."], "correct": 1}, {"n": 34, "q": "Welche Farbe hat bei den meisten Süßwasserfischen die gesunde Leber?", "a": ["Hellgelb.", "Hellbraun.", "Dunkelrot."], "correct": 2}, {"n": 35, "q": "Bei welchen gesunden Süßwasserfischen hat die Leber eine andere Farbe als dunkelrot?", "a": ["Bei den Barschen.", "Bei den Forellen.", "Bei den Hechten und bei den Aalquappen (Rutten)."], "correct": 2}, {"n": 36, "q": "Wo befinden sich bei einem Fisch die Nieren?", "a": ["Unter der Wirbelsäule vom Kopfansatz bis teilweise hinter den After.", "Unter der Wirbelsäule vom After bis zum Schwanz.", "Neben dem Herzen."], "correct": 0}, {"n": 37, "q": "Wo verläuft bei den Fischen das Rückenmark?", "a": ["Unterhalb der Wirbelsäule innerhalb des Nierenkanals.", "Oberhalb des Wirbelkörpers in einem Kanal, den die oberen Wirbelfortsätze bilden.", "An den Seitenlinien innerhalb des Nervenkanals."], "correct": 1}, {"n": 38, "q": "Welche aufgeführte Aussage über Schmerzen bei Fischen ist richtig?", "a": ["Fische können keine Schmerzen empfinden.", "Fische können Schmerzen empfinden.", "Nur wenn das Wasser stark verschmutzt ist, empfinden Fische Schmerzen."], "correct": 1}, {"n": 39, "q": "Wie ist der Geschmackssinn der Fische ausgebildet?", "a": ["Gar nicht.", "Schlecht.", "Sehr gut."], "correct": 2}];
+const QUESTIONS = [{"n": 1, "q": "Welche Aussage über das Skelett der Neunaugen ist richtig?", "a": ["Die Neunaugen haben kein Stützskelett.", "Sie haben ein Knochenskelett.", "Sie haben ein knorpeliges Skelett."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 2, "q": "Welche aufgeführten Fische gehören zu den Rundmäulern?", "a": ["Stör und Forelle.", "Bach- und Flussneunauge.", "Karpfen und Barsch."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 3, "q": "Welche Aussage über das Skelett unserer heimischen karpfenartigen Fische ist richtig?", "a": ["Sie haben ein knorpeliges Skelett.", "Sie besitzen ein Stützskelett.", "Sie haben ein Knochenskelett."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 4, "q": "Zu welcher Gruppe unserer Fischfauna gehören die meisten Fischarten?", "a": ["Zur Gruppe der Barschartigen.", "Zur Gruppe der Karpfenartigen.", "Zur Gruppe der Forellenartigen."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 5, "q": "Wozu dienen bei einem Fisch die paarigen Flossen in erster Linie?", "a": ["Der Steuerung und dem Gleichgewicht.", "Dem Antrieb.", "Der Stabilisation."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 6, "q": "Welche aufgeführte Flosse ist beim Fisch paarig vorhanden?", "a": ["Die Schwanzflosse.", "Die Fettflosse.", "Die Brustflosse."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 7, "q": "Welche Aufgabe erfüllt die Schwanzflosse des Fisches?", "a": ["Sie dient zur Stabilisation des Fisches.", "Sie wird zur Steuerung benötigt.", "Sie dient dem Fisch als Antrieb."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 8, "q": "Welche Aussage über die Fettflosse bei den Fischen ist richtig?", "a": ["Nur einige Fischarten haben eine Fettflosse.", "Die Fettflosse dient den Fischen zur Steuerung.", "Alle Fische haben eine Fettflosse."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 9, "q": "Wo befinden sich in der Fischhaut die Schleimdrüsen?", "a": ["An allen Flossen.", "In der Oberhaut (Epidermis).", "In der Unterhaut (Lederhaut)."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 10, "q": "Wo befinden sich bei einem Fisch Schuppen, Farbzellen und Lymphgefäße?", "a": ["Im Muskelgewebe.", "In der Schleimhaut.", "In der Lederhaut."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 11, "q": "Welche Aufgabe hat die Schleimhaut eines Fisches?", "a": ["Sie ist für die Färbung des Fisches verantwortlich.", "Sie schützt den Fisch gegen äußere Einflüsse und vermindert beim Schwimmen den Reibungswiderstand seines Körpers.", "Sie gibt den Schuppen den nötigen Halt."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 12, "q": "Wie werden die in der Durchsicht hell erscheinenden Ringe und Bögen in der Fischschuppe bezeichnet?", "a": ["Sie werden als Laichringe bezeichnet.", "Sie werden als Winterringe bezeichnet.", "Sie werden als Sommerringe bezeichnet."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 13, "q": "Worauf weisen die in der Durchsicht dunkel erscheinenden Ringe und Bögen in der Fischschuppe hin?", "a": ["Auf die Wachstumsperiode im Winter.", "Auf die Wachstumsperiode im Sommer.", "Es sind Laichringe, die darauf hinweisen, wie oft der Fisch abgelaicht hat."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 14, "q": "Welche der folgenden Aussagen über die Beschuppung der Fische ist richtig?", "a": ["Die Rutte und der Aal haben keine Schuppen.", "Der Wels sowie der Zwergwels sind schuppenlos.", "Keine Schuppen haben die Barbe und die Nase."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 15, "q": "An welchen Teilen des Fischkörpers kann das ungefähre Alter des Fisches festgestellt werden?", "a": ["An der Stärke der Haut und an der Anzahl der Flossenstrahlen.", "An der Anzahl und Länge der Kiemendorne.", "An den Schuppen und den Kiemendeckeln."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 16, "q": "Wodurch erfolgt bei den Fischen die Laichfärbung?", "a": ["Durch das Auge.", "Durch Hormone und Farbzellen.", "Durch das Gehirn."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 17, "q": "Was ist Laichausschlag?", "a": ["Die bei vielen Karpfenfischen perlatigen, kleinen Auswüchse in der Oberhaut zur Laichzeit.", "Eine beim Laichspiel zugezogene Hautverletzung, die sich entzündet hat.", "Ein Kennzeichen, dass der Fisch bereits abgelaicht hat."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 18, "q": "Welche 4 Farben weist im Wesentlichen ein Fisch auf?", "a": ["Schwarz, Gelb, Blau und Braun.", "Silber, Rot, Grün und Blau.", "Silber, Schwarz, Rot und Gelb."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 19, "q": "Ein Unterscheidungsmerkmal bei den Fischen ist die Maulstellung, welche Aufzählung ist richtig?", "a": ["Ober-, unter- und endständiges Maul.", "Ober-, end- und langständiges Maul.", "End-, lang- und hochständiges Maul."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 20, "q": "Worauf lässt das oberständige Maul eines Fisches schließen?", "a": ["Dass der Fisch ein großer Räuber ist.", "Dass der Fisch überwiegend Oberflächennahrung verzehrt.", "Dass der Fisch Bodennahrung bevorzugt."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 21, "q": "Bei welchen Fischen dient die Bezahnung des Pflugscharbeins als Unterscheidungsmerkmal?", "a": ["Bei den barschartigen Fischen.", "Bei den karpfenartigen Fischen.", "Bei den lachsartigen Fischen."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 22, "q": "Welche Fische haben Schlundzähne?", "a": ["Forellen, Hechte und Zander.", "Brachsen (Brassen oder Blei), Rotfedern und Karpfen.", "Dorsche, Streber und Barsche."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 23, "q": "Wo befinden sich bei einem Fisch die Nasengruben?", "a": ["Im Fischschädel, vor den Augen.", "Unter der Maulspalte.", "Hinter dem Kiemenbogen."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 24, "q": "Womit nimmt der Fisch den Sauerstoff aus dem Wasser auf?", "a": ["Mit dem Schlund.", "Mit den Kiemen.", "Über die Seitenlinie."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 25, "q": "Was hat es zu bedeuten, wenn die Fische mit dem Maul über die Wasseroberfläche drängen?", "a": ["Es besteht Sauerstoffmangel im Wasser.", "Es besteht Nahrungsmangel.", "Das Wasser ist zu kalt."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 26, "q": "Welche der aufgeführten Fische haben für den Menschen besonders schleimhautreizendes Blut?", "a": ["Der Kaulbarsch und der Barsch.", "Der Wels sowie der Aal.", "Die Barbe und der Giebel."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 27, "q": "Was ist für die Temperatur des Fischblutes maßgebend?", "a": ["Die Wassertemperatur.", "Die gute Nahrungsaufnahme.", "Die schnelle oder langsame Fortbewegung des Fisches im Wasser."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 28, "q": "Welche Aussage über die Sauerstoffanreicherung im Fischblut ist richtig?", "a": ["Das Fischblut wird in den Nieren mit Sauerstoff angereichert.", "Die Sauerstoffanreicherung des Fischblutes findet im Fischherz statt.", "Die Sauerstoffanreicherung des Fischblutes erfolgt in den Kiemen."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 29, "q": "Wo sitzt bei einem Fisch das Herz?", "a": ["Zwischen Schädelende und Rückenflosse.", "In der Fischmitte, zwischen dem Kopf und dem After des Fisches.", "In der Kehlgegend."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 30, "q": "Warum werden Fische als wechselwarme Tiere bezeichnet?", "a": ["Weil sich ihre Körpertemperatur der jeweiligen Wassertemperatur angleicht.", "Weil sie ihre Körpertemperatur unabhängig von der Wassertemperatur wechseln können.", "Weil ihre Körpertemperatur in den unterschiedlichen Altersstufen wechselt."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 31, "q": "Was für eine Schwimmblase haben Cypriniden (Karpfenartige Fische)?", "a": ["Eine einteilige Schwimmblase.", "Eine zweiteilige Schwimmblase ohne Verbindung zum Schlund.", "Eine zweiteilige Schwimmblase mit Verbindung zum Vorderdarm."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 32, "q": "Welche Hauptaufgabe erfüllt die Schwimmblase der Fische?", "a": ["Sie ermöglicht durch Auftrieb die Schwerelosigkeit des Fisches.", "Sie ermöglicht eine bessere Verdauung der aufgenommenen Nahrung.", "Sie ermöglicht eine bessere Funktion der Gallenblase."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 33, "q": "Wie verändert sich die Schwimmblase der Fische beim raschen Aufsteigen?", "a": ["Sie verkleinert sich.", "Sie dehnt sich aus.", "Sie verändert sich nicht."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 34, "q": "Welche Farbe hat bei den meisten Süßwasserfischen die gesunde Leber?", "a": ["Hellgelb.", "Hellbraun.", "Dunkelrot."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 35, "q": "Bei welchen gesunden Süßwasserfischen hat die Leber eine andere Farbe als dunkelrot?", "a": ["Bei den Barschen.", "Bei den Forellen.", "Bei den Hechten und bei den Aalquappen (Rutten)."], "correct": 2, "topic": "Allgemeine Fischkunde"}, {"n": 36, "q": "Wo befinden sich bei einem Fisch die Nieren?", "a": ["Unter der Wirbelsäule vom Kopfansatz bis teilweise hinter den After.", "Unter der Wirbelsäule vom After bis zum Schwanz.", "Neben dem Herzen."], "correct": 0, "topic": "Allgemeine Fischkunde"}, {"n": 37, "q": "Wo verläuft bei den Fischen das Rückenmark?", "a": ["Unterhalb der Wirbelsäule innerhalb des Nierenkanals.", "Oberhalb des Wirbelkörpers in einem Kanal, den die oberen Wirbelfortsätze bilden.", "An den Seitenlinien innerhalb des Nervenkanals."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 38, "q": "Welche aufgeführte Aussage über Schmerzen bei Fischen ist richtig?", "a": ["Fische können keine Schmerzen empfinden.", "Fische können Schmerzen empfinden.", "Nur wenn das Wasser stark verschmutzt ist, empfinden Fische Schmerzen."], "correct": 1, "topic": "Allgemeine Fischkunde"}, {"n": 39, "q": "Wie ist der Geschmackssinn der Fische ausgebildet?", "a": ["Gar nicht.", "Schlecht.", "Sehr gut."], "correct": 2, "topic": "Allgemeine Fischkunde"}];
+let quizQuestions=[],current=0,answers={};
 
-function showPanel(id, btn) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+function show(id){
+  document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  else {
-    const order = ['start','lernen','quiz'];
-    document.querySelectorAll('.tab').forEach((t,i)=>{ if(order[i]===id) t.classList.add('active'); });
-  }
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({top:0});
 }
+function goHome(){show('home')}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 
-function showPanelById(id) {
-  showPanel(id, null);
+function startQuiz(){
+  quizQuestions=shuffle(QUESTIONS);
+  current=0;answers={};
+  show('quiz');renderQuiz();
 }
-
-function markAnswer(n, selected, correct) {
-  const q = document.getElementById('frage-' + n);
-  const opts = q.querySelectorAll('.opt');
-  opts.forEach((o,i) => {
-    o.classList.remove('good','bad');
-    if(i === correct) o.classList.add('good');
-    if(i === selected && i !== correct) o.classList.add('bad');
-  });
-  const fb = document.getElementById('fb-' + n);
-  if(selected === correct) {
-    fb.textContent = '✓ Richtig';
-    fb.className = 'feedback ok';
-  } else {
-    fb.textContent = '✗ Falsch – richtig ist ' + String.fromCharCode(97+correct) + ')';
-    fb.className = 'feedback bad';
-  }
-}
-
-let quizList = [], quizIndex = 0, quizScore = 0, quizAnswered = false;
-
-function shuffle(arr) {
-  arr = arr.slice();
-  for (let i=arr.length-1; i>0; i--) {
-    const j = Math.floor(Math.random()*(i+1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
-
-function startQuiz() {
-  quizList = shuffle(QUESTIONS).slice(0,10);
-  quizIndex = 0;
-  quizScore = 0;
-  quizAnswered = false;
-  renderQuiz();
-}
-
-function renderQuiz() {
-  const area = document.getElementById('quizArea');
-  if (quizIndex >= quizList.length) {
-    const pct = Math.round((quizScore/quizList.length)*100);
-    area.innerHTML = `
-      <div class="card" style="text-align:center">
-        <div class="num">Ergebnis</div>
-        <div class="scorebig">${quizScore} / ${quizList.length}</div>
-        <p><b>${pct} % richtig</b></p>
-        <div class="actions" style="justify-content:center">
-          <button class="btn primary" onclick="startQuiz()">Nochmal</button>
-          <button class="btn secondary" onclick="showPanelById('lernen')">Zum Lernen</button>
-        </div>
-      </div>`;
-    return;
-  }
-  const q = quizList[quizIndex];
-  area.innerHTML = `
-    <div class="card question">
-      <div class="num">Quizfrage ${quizIndex+1} von ${quizList.length}</div>
-      <h3>${q.q}</h3>
-      <div class="opts">
-        ${q.a.map((x,i)=>`<button class="btn secondary" style="text-align:left" onclick="answerQuiz(${i})" id="qa-${i}"><b>${String.fromCharCode(97+i)})</b> ${x}</button>`).join('')}
+function renderQuiz(){
+  const q=quizQuestions[current],selected=answers[q.n];
+  document.getElementById('quizMeta').textContent=(current+1)+' / '+quizQuestions.length;
+  document.getElementById('bar').style.width=((current+1)/quizQuestions.length*100)+'%';
+  document.getElementById('quizCard').innerHTML=`
+    <div class="card">
+      <div class="qnum">Frage ${q.n}</div>
+      <div class="question">${q.q}</div>
+      <div class="options">
+        ${q.a.map((x,i)=>`<button class="option ${selected===i?'selected':''}" onclick="selectAnswer(${i})"><b>${String.fromCharCode(97+i)})</b> ${x}</button>`).join('')}
       </div>
-      <div id="quizFb" class="feedback"></div>
-      <div class="actions">
-        <button class="btn primary" id="nextQuizBtn" onclick="nextQuiz()" disabled>${quizIndex===quizList.length-1?'Auswertung':'Nächste Frage'}</button>
+      <div class="hint">Die Lösung wird im Quiz nicht sofort angezeigt.</div>
+      <div class="nav">
+        <button class="btn secondary" onclick="prevQ()" ${current===0?'disabled':''}>Zurück</button>
+        <button class="btn primary" onclick="nextQ()">${current===quizQuestions.length-1?'Quiz abgeben':'Weiter'}</button>
       </div>
     </div>`;
-  quizAnswered = false;
+}
+function selectAnswer(i){answers[quizQuestions[current].n]=i;renderQuiz()}
+function prevQ(){if(current>0){current--;renderQuiz()}}
+function nextQ(){if(current<quizQuestions.length-1){current++;renderQuiz()}else finishQuiz()}
+
+function finishQuiz(){
+  let correct=0;
+  quizQuestions.forEach(q=>{if(answers[q.n]===q.correct)correct++});
+  const pct=Math.round(correct/quizQuestions.length*100);
+  const review=quizQuestions.map(q=>{
+    const chosen=answers[q.n],ok=chosen===q.correct;
+    const chosenText=chosen===undefined?'Keine Antwort':String.fromCharCode(97+chosen)+') '+q.a[chosen];
+    const rightText=String.fromCharCode(97+q.correct)+') '+q.a[q.correct];
+    return `<div class="review-item ${ok?'good':'bad'}">
+      <div class="review-q">${q.n}) ${q.q}</div>
+      <div class="answerline">Deine Antwort: <span class="${ok?'goodtxt':'badtxt'}">${chosenText}</span></div>
+      ${ok?'':`<div class="answerline">Richtige Antwort: <span class="goodtxt">${rightText}</span></div>`}
+    </div>`;
+  }).join('');
+  document.getElementById('resultBody').innerHTML=`
+    <div class="card result-head">
+      <div class="qnum">Allgemeine Fischkunde</div>
+      <div class="score">${correct} / ${quizQuestions.length}</div>
+      <div><b>${pct}% richtig</b></div>
+      <div class="buttons" style="justify-content:center">
+        <button class="btn primary" onclick="startQuiz()">Nochmal</button>
+        <button class="btn secondary" onclick="goHome()">Themenübersicht</button>
+      </div>
+    </div>
+    <div class="section-title">Auswertung aller Fragen</div>${review}`;
+  show('results');
 }
 
-function answerQuiz(i) {
-  if (quizAnswered) return;
-  quizAnswered = true;
-  const q = quizList[quizIndex];
-  for (let k=0; k<q.a.length; k++) {
-    const el = document.getElementById('qa-' + k);
-    el.disabled = true;
-    if (k === q.correct) el.style.outline = '2px solid #17763a';
-    if (k === i && i !== q.correct) el.style.outline = '2px solid #b42318';
-  }
-  const fb = document.getElementById('quizFb');
-  if (i === q.correct) {
-    quizScore++;
-    fb.textContent = '✓ Richtig';
-    fb.className = 'feedback ok';
-  } else {
-    fb.textContent = '✗ Falsch – richtig ist ' + String.fromCharCode(97+q.correct) + ')';
-    fb.className = 'feedback bad';
-  }
-  document.getElementById('nextQuizBtn').disabled = false;
-}
-
-function nextQuiz() {
-  quizIndex++;
-  renderQuiz();
+function showLearn(){
+  document.getElementById('learnBody').innerHTML=QUESTIONS.map(q=>`
+    <div class="learn-card">
+      <div class="qnum">Frage ${q.n}</div>
+      <h3>${q.q}</h3>
+      ${q.a.map((x,i)=>`<div class="learnopt"><b>${String.fromCharCode(97+i)})</b> ${x}</div>`).join('')}
+      <details><summary>Lösung anzeigen</summary><div class="solution">✓ ${String.fromCharCode(97+q.correct)}) ${q.a[q.correct]}</div></details>
+    </div>`).join('');
+  show('learn');
 }
 </script>
 </body>
